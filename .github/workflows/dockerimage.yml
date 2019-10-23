@@ -9,20 +9,18 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      repo_token: ${{ secrets.GITHUB_TOKEN }}
-      username: ${{ github.actor }}
-      version: $( echo ${GITHUB_REF#"refs/tags/"} )
+      REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      USERNAME: ${{ github.actor }}
+      IMAGE_VERSION: $( echo ${GITHUB_REF#"refs/tags/"} )
  
     steps:
       - uses: actions/checkout@v1
     
       - name: Build the Docker image
-        run: docker build . --file Dockerfile
-          --tag docker.pkg.github.com/rebilly/docker-mailcatcher/mailcatcher:${version}
-          --tag docker.pkg.github.com/rebilly/docker-mailcatcher/mailcatcher:latest
+        run: docker build . --file Dockerfile --tag docker.pkg.github.com/rebilly/docker-mailcatcher/mailcatcher:$IMAGE_VERSION --tag docker.pkg.github.com/rebilly/docker-mailcatcher/mailcatcher:latest
 
       - name: Login to register
-        run: docker login docker.pkg.github.com -u ${username} -p ${repo_token}
+        run: docker login docker.pkg.github.com -u $USERNAME -p $REPO_TOKEN
 
       - name: Push the Docker image
-        run: docker push docker.pkg.github.com/rebilly/docker-mailcatcher/mailcatcher:${version}
+        run: docker push docker.pkg.github.com/rebilly/docker-mailcatcher/mailcatcher:$IMAGE_VERSION
