@@ -1,9 +1,8 @@
 # MailCatcher Docker Image
 
 [![GitHub Actions status][ico-github-actions]][link-github]
-[![Latest Version on Packagist][ico-version]][link-github]
+[![Latest Release][ico-version]][link-github]
 [![Software License][ico-license]][link-license]
-
 
 [ico-version]: https://img.shields.io/github/tag/Rebilly/docker-mailcatcher.svg?label=latest
 [ico-github-actions]: https://github.com/Rebilly/docker-mailcatcher/workflows/build/badge.svg
