@@ -2,7 +2,7 @@ name: build
 
 on:
   release:
-    types: [published, created, edited]
+    types: [published]
 
 jobs:
 
@@ -17,10 +17,9 @@ jobs:
       - uses: actions/checkout@v1
     
       - name: Build the Docker image
-        run: |
-          docker build . --file Dockerfile
-            --tag docker.pkg.github.com/rebilly/docker-mailcatcher/mailcatcher:$version
-            --tag docker.pkg.github.com/rebilly/docker-mailcatcher/mailcatcher:latest
+        run: docker build . --file Dockerfile
+          --tag docker.pkg.github.com/rebilly/docker-mailcatcher/mailcatcher:$version
+          --tag docker.pkg.github.com/rebilly/docker-mailcatcher/mailcatcher:latest
 
       - name: Login to register
         run: docker login docker.pkg.github.com -u $username -p $repo_token
