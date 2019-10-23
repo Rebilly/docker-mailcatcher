@@ -1,5 +1,17 @@
 # MailCatcher Docker Image
 
+[![GitHub Actions status][ico-github-actions]][link-github]
+[![Latest Version on Packagist][ico-version]][link-github]
+[![Software License][ico-license]][link-license]
+
+
+[ico-version]: https://img.shields.io/github/tag/Rebilly/docker-mailcatcher.svg?label=latest
+[ico-github-actions]: https://github.com/Rebilly/docker-mailcatcher/workflows/build/badge.svg
+[ico-license]: https://img.shields.io/badge/License-MIT-blue.svg
+
+[link-github]: https://github.com/Rebilly/docker-mailcatcher
+[link-license]: LICENSE
+
 [MailCatcher](https://mailcatcher.me/) runs a super simple SMTP server
 which catches any message sent to it to display in a web interface.
 
