@@ -19,7 +19,7 @@ jobs:
           --tag docker.pkg.github.com/rebilly/docker-mailcatcher/mailcatcher:latest
 
       - name: Login to register
-        run: docker login docker.pkg.github.com -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
+        run: echo ${{ secrets.GITHUB_TOKEN }} | docker login docker.pkg.github.com --username ${{ github.actor }} --password-stdin
 
       - name: Push the Docker image
         run: docker push docker.pkg.github.com/rebilly/docker-mailcatcher/mailcatcher:latest
