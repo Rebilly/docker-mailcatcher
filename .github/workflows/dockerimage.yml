@@ -8,19 +8,18 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
-    env:
-      REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      USERNAME: ${{ github.actor }}
-      IMAGE_VERSION: $( echo ${GITHUB_REF#"refs/tags/"} )
  
     steps:
       - uses: actions/checkout@v1
     
       - name: Build the Docker image
-        run: docker build . --file Dockerfile --tag docker.pkg.github.com/rebilly/docker-mailcatcher/mailcatcher:$IMAGE_VERSION --tag docker.pkg.github.com/rebilly/docker-mailcatcher/mailcatcher:latest
+        env:
+          IMAGE_VERSION: $( echo ${GITHUB_REF#"refs/tags/"} )
+        run: docker build . --file Dockerfile
+          --tag docker.pkg.github.com/rebilly/docker-mailcatcher/mailcatcher:latest
 
       - name: Login to register
-        run: docker login docker.pkg.github.com -u $USERNAME -p $REPO_TOKEN
+        run: docker login docker.pkg.github.com -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
 
       - name: Push the Docker image
-        run: docker push docker.pkg.github.com/rebilly/docker-mailcatcher/mailcatcher:$IMAGE_VERSION
+        run: docker push docker.pkg.github.com/rebilly/docker-mailcatcher/mailcatcher:latest
