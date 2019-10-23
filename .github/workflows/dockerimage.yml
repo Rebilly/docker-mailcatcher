@@ -14,8 +14,8 @@ jobs:
     
       - name: Build the Docker image
         run: docker build . --file Dockerfile
-          --tag docker.pkg.github.com/rebilly/docker-mailcatcher/mailcatcher:${{ github.ref }}
+          --tag docker.pkg.github.com/rebilly/docker-mailcatcher/mailcatcher:$( echo ${GITHUB_REF#"refs/tags/"} )
           --tag docker.pkg.github.com/rebilly/docker-mailcatcher/mailcatcher:latest
 
       - name: Push the Docker image
-        run: docker push docker.pkg.github.com/rebilly/docker-mailcatcher/mailcatcher:${{ github.ref }}
+        run: docker push docker.pkg.github.com/rebilly/docker-mailcatcher/mailcatcher:$( echo ${GITHUB_REF#"refs/tags/"} )
