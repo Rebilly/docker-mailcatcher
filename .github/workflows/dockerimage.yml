@@ -18,11 +18,11 @@ jobs:
     
       - name: Build the Docker image
         run: docker build . --file Dockerfile
-          --tag docker.pkg.github.com/rebilly/docker-mailcatcher/mailcatcher:$version
+          --tag docker.pkg.github.com/rebilly/docker-mailcatcher/mailcatcher:${version}
           --tag docker.pkg.github.com/rebilly/docker-mailcatcher/mailcatcher:latest
 
       - name: Login to register
-        run: docker login docker.pkg.github.com -u $username -p $repo_token
+        run: docker login docker.pkg.github.com -u ${username} -p ${repo_token}
 
       - name: Push the Docker image
-        run: docker push docker.pkg.github.com/rebilly/docker-mailcatcher/mailcatcher:$version
+        run: docker push docker.pkg.github.com/rebilly/docker-mailcatcher/mailcatcher:${version}
